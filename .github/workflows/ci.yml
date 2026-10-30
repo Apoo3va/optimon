@@ -12,7 +12,7 @@ jobs:
         run: >
           g++ -std=c++17 -Wall -Wextra -Werror -O1 -g
           -fsanitize=address,undefined -fno-omit-frame-pointer
-          -I wokwi tests/test_main.cpp -o run_tests
+          -I . tests/test_main.cpp -o run_tests
 
       - name: Run tests
         run: ./run_tests
