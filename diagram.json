@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Apoorva Yadav",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled1", "top": -140, "left": 160, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "chip-sfp", "id": "sfp1", "top": 40, "left": 260, "attrs": {} },
+    { "type": "wokwi-led", "id": "ledGreen", "top": 20, "left": -160, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "ledRed", "top": 20, "left": -110, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 120, "left": -170, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 120, "left": -120, "rotate": 90, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled1:GND", "esp:GND.1", "black", [] ],
+    [ "oled1:VCC", "esp:3V3", "red", [] ],
+    [ "oled1:SCL", "esp:22", "green", [] ],
+    [ "oled1:SDA", "esp:21", "blue", [] ],
+    [ "sfp1:GND", "esp:GND.1", "black", [] ],
+    [ "sfp1:VCC", "esp:3V3", "red", [] ],
+    [ "sfp1:SCL", "esp:22", "green", [] ],
+    [ "sfp1:SDA", "esp:21", "blue", [] ],
+    [ "sfp1:LOS", "esp:35", "orange", [] ],
+    [ "sfp1:TX_DIS", "esp:33", "purple", [] ],
+    [ "sfp1:TX_DATA", "esp:25", "yellow", [] ],
+    [ "sfp1:RX_OUT", "esp:34", "gray", [] ],
+    [ "esp:26", "r1:1", "green", [] ],
+    [ "r1:2", "ledGreen:A", "green", [] ],
+    [ "ledGreen:C", "esp:GND.2", "black", [] ],
+    [ "esp:27", "r2:1", "red", [] ],
+    [ "r2:2", "ledRed:A", "red", [] ],
+    [ "ledRed:C", "esp:GND.2", "black", [] ]
+  ],
+  "dependencies": {}
+}

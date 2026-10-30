@@ -1,0 +1,17 @@
+{
+  "name": "SFP Optical Transceiver (SFF-8472)",
+  "author": "Apoorva",
+  "pins": ["TX_DATA", "TX_DIS", "LOS", "RX_OUT", "GND", "VCC", "SCL", "SDA"],
+  "controls": [
+    { "id": "temperature", "label": "Module temperature (°C)", "type": "range", "min": -20, "max": 90, "step": 1 },
+    { "id": "txPower", "label": "Laser power setpoint (dBm)", "type": "range", "min": -5, "max": 5, "step": 0.5 },
+    { "id": "fiberLength", "label": "Fiber length (km)", "type": "range", "min": 0, "max": 200, "step": 1 },
+    { "id": "bendLoss", "label": "Fiber bend loss (dB)", "type": "range", "min": 0, "max": 20, "step": 0.5 },
+    { "id": "ampGain", "label": "Amplifier (EDFA) gain (dB)", "type": "range", "min": 0, "max": 25, "step": 1 },
+    { "id": "laserAging", "label": "Laser aging (%)", "type": "range", "min": 0, "max": 100, "step": 5 },
+    { "id": "fiberCut", "label": "Fiber cut (0 = ok, 1 = cut)", "type": "range", "min": 0, "max": 1, "step": 1 },
+    { "id": "extinctionRatio", "label": "Extinction ratio (dB)", "type": "range", "min": 2, "max": 15, "step": 0.5 },
+    { "id": "rxTimeConstant", "label": "Receiver time constant (us)", "type": "range", "min": 0, "max": 1000, "step": 10 },
+    { "id": "rxNoise", "label": "Receiver noise (mV rms)", "type": "range", "min": 1, "max": 30, "step": 0.5 }
+  ]
+}
