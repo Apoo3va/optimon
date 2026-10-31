@@ -8,11 +8,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build tests (warnings as errors, address + undefined-behaviour sanitizers)
+      - name: Build firmware logic tests (warnings as errors, address + undefined-behaviour sanitizers)
         run: >
           g++ -std=c++17 -Wall -Wextra -Werror -O1 -g
           -fsanitize=address,undefined -fno-omit-frame-pointer
           -I . tests/test_main.cpp -o run_tests
 
-      - name: Run tests
+      - name: Run firmware logic tests
         run: ./run_tests
+
+      - name: Build module model tests (the simulated SFP / CMIS chip itself)
+        run: |
+          FLAGS="-Wall -Wextra -Werror -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer"
+          gcc -std=c11 $FLAGS -I tests -c sfp.chip.c -o chip.o
+          gcc -std=c11 $FLAGS -I tests -c tests/wokwi_stub.c -o wokwi_stub.o
+          g++ -std=c++17 $FLAGS -I tests -I . tests/test_chip.cpp chip.o wokwi_stub.o -o run_chip_tests
+
+      - name: Run module model tests
+        run: ./run_chip_tests
